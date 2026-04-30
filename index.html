@@ -138,34 +138,6 @@
         radial-gradient(circle at 60% 45%,rgba(212,175,55,.12),transparent 38%),
         linear-gradient(180deg,rgba(3,5,10,.20),rgba(3,5,10,.88))!important;
     }
-    .cover{min-height:100vh;background:#030305!important}
-    .cover-stage{
-      position:relative;height:100vh;display:grid;place-items:center;text-align:center;
-      padding:clamp(32px,6vw,96px);
-      background:
-        linear-gradient(rgba(3,5,10,.36),rgba(3,5,10,.40)),
-        radial-gradient(circle at 50% 30%,rgba(212,175,55,.16),transparent 34%),
-        radial-gradient(circle at 20% 78%,rgba(134,185,200,.10),transparent 30%),
-        linear-gradient(135deg,#020306 0%,#0b0d12 45%,#030305 100%)!important;
-    }
-    .cinematic-title-card{width:min(980px,100%);margin:auto;transform:translateY(-1vh)}
-    .cinematic-name{
-      margin:0;color:#ead7ae;font-family:var(--font-display);font-size:clamp(2.25rem,5.1vw,5.1rem);
-      line-height:.98;letter-spacing:.012em;font-weight:400;
-    }
-    .cinematic-credentials{
-      display:grid;gap:.5rem;margin-top:clamp(30px,4.8vh,56px);
-      color:rgba(240,231,216,.9);font-size:clamp(.9rem,1.08vw,1.08rem);
-      font-weight:300;line-height:1.55;letter-spacing:.015em;
-    }
-    .cinematic-credentials p{margin:0;font:inherit}
-    .cinematic-phrase{
-      margin:clamp(44px,7vh,76px) 0 0;color:var(--amber);font-family:var(--font-display);
-      font-size:clamp(.95rem,1.13vw,1.13rem);line-height:1.35;letter-spacing:.035em;font-weight:400;
-    }
-    .fade-sequence{opacity:0;transform:translateY(12px);animation:cinematicFade 1.15s ease forwards}
-    .fade-sequence:nth-child(1){animation-delay:.15s}.fade-sequence:nth-child(2){animation-delay:.72s}.fade-sequence:nth-child(3){animation-delay:1.32s}
-    @keyframes cinematicFade{to{opacity:1;transform:translateY(0)}}
     .case-slide-card,.monitor-card,.flow-stage,.tlt-step,.family-panel,.legal-pillar,.record-field,.synthesis-card,.biblio-block,.simpsons-card,.cut-slab,.material-item,.status-item{
       background:rgba(240,231,216,.045)!important;
       border-color:rgba(240,231,216,.16)!important;
@@ -181,10 +153,6 @@
     svg [fill*="191,167,255"]{fill:rgba(157,138,183,.14)!important}
     @media(max-width:720px){
       :root{--wrap:min(100%,calc(100vw - 32px))}
-      .cinematic-title-card{transform:none}
-    }
-    @media(prefers-reduced-motion:reduce){
-      .fade-sequence{animation:none;opacity:1;transform:none}
     }
   </style>
 </head>
@@ -589,7 +557,7 @@
   function popCultureById(id){return CONTENT.popCultureInterludes.find(p=>p.id===id);}
   function sceneExtras(s){const cut=s.conceptCut?`<div class="concept-cut"><b>${esc(CONTENT.ui.conceptCutLabel)}</b>${esc(s.conceptCut[0])} <span>≠</span> ${esc(s.conceptCut[1])}<p class="micro">${esc(s.conceptCut[2])}</p></div>`:"";const p=philosophyById(s.philosophyLens);const lens=p?`<div class="philosophy-thread"><b>${esc(CONTENT.ui.philosophyThreadLabel)} · ${esc(p.name)}</b><p>${esc(p.phrase)}</p><p class="micro">${esc(p.question)}</p></div>`:"";return cut+lens;}
   function renderActBreak(act){return `<section class="act-break scene" id="${esc(act.id)}" data-nav="${esc(act.number+' · '+act.title)}"><div class="inner narrow"><p class="act-number">${esc(act.number)}</p><h2 class="act-title">${esc(act.title)}</h2><p class="act-line">${esc(act.line)}</p></div></section>`;}
-  function renderCover(){const c=CONTENT.cover;return `<section class="cover" id="cover" data-nav="Portada"${notesAttr(CONTENT.guide30.scenes.cover)}><div class="cover-stage"><div class="cinematic-title-card"><h1 class="cinematic-name fade-sequence">${esc(c.author)}</h1><div class="cinematic-credentials fade-sequence">${c.credentials.map(x=>`<p>${esc(x)}</p>`).join("")}</div><p class="cinematic-phrase fade-sequence">${esc(c.title)}</p></div></div></section>`;}
+  function renderCover(){const c=CONTENT.cover;return `<section class="cover" id="cover" data-nav="Portada"${notesAttr(CONTENT.guide30.scenes.cover)}><div class="cover-stage"><div class="cover-template"><img src="${esc(c.image)}" alt="${esc(c.imageAlt)}" onerror="this.parentElement.classList.add('image-missing')"><div class="cover-text-mask" aria-hidden="true"></div><div class="cover-overlay-text" aria-label="Credenciales de portada"><p class="cover-overlay-name">${esc(c.author)}</p><div class="cover-overlay-credentials">${c.credentials.map(x=>`<p>${esc(x)}</p>`).join("")}</div></div><div class="cover-fallback"><h1 class="cover-title">${esc(c.title)}</h1><div class="cover-mark"></div><p class="cover-author">${esc(c.author)}</p>${c.credentials.map(x=>`<p class="cover-credential">${esc(x)}</p>`).join("")}</div></div><div class="question-stage"><div><div class="cover-mark"></div><p class="quote">${esc(c.question)}</p><p class="ethic-line">${c.ethic.map(esc).join("<br>")}</p></div></div></div></section>`;}
   function renderScrollyStatement(s){return sectionOpen(s,"pause")+`<div class="narrow center"><p class="kicker">${esc(s.eyebrow)}</p><h2 class="statement">${esc(s.title)}</h2><p class="lede">${esc(s.lead)}</p>${sceneExtras(s)}</div></div></section>`;}
   function renderInterlude(s){
     const pop=s.popKey?popCultureById(s.popKey):null;
@@ -663,7 +631,7 @@
   function initCharts(){}
   function updatePopImageStatus(){const visuals=$$(".pop-interlude-visual,.simpsons-card");popImageStatus={loaded:visuals.filter(v=>v.dataset.loaded==="true").length,missing:visuals.filter(v=>v.classList.contains("image-missing")).map(v=>v.querySelector("img")?.getAttribute("src")||"imagen sin src")};}
   function preloadPopImages(){if(!CONTENT.config.usePopImages||CONTENT.config.publicSafeMode)return;Object.values(CONTENT.popAssets||{}).forEach(asset=>{if(asset?.src){const img=new Image();img.src=asset.src;}});}
-  function initScroll(){const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;if(!window.gsap||!window.ScrollTrigger||reduce){document.body.classList.add("has-left-cover");return}gsap.registerPlugin(ScrollTrigger);gsap.from(".cover-title",{opacity:0,y:24,duration:1.4,ease:"power3.out"});gsap.from(".cover-author",{opacity:0,y:18,duration:1,delay:.55,ease:"power3.out"});gsap.from(".cover-credential",{opacity:0,y:16,stagger:.18,duration:.9,delay:.85,ease:"power3.out"});const tl=gsap.timeline({scrollTrigger:{trigger:"#cover",start:"top top",end:"bottom bottom",scrub:1.1,pin:".cover-stage"}});tl.to(".institutional-cover",{opacity:1,y:0,duration:1.2}).to(".institutional-cover",{opacity:0,y:-28,duration:1.1},"+=.45").to(".question-stage",{opacity:1,duration:1.1},"-=.35");ScrollTrigger.create({trigger:"#pregunta",start:"top 85%",onEnter:()=>document.body.classList.add("has-left-cover"),onLeaveBack:()=>document.body.classList.remove("has-left-cover")});gsap.utils.toArray(".scene-title,.statement,.lede,.lens,.console-item,.timeline-step,.panel,.record-field,.legal-pillar").forEach(el=>gsap.from(el,{opacity:0,y:28,duration:.85,ease:"power2.out",scrollTrigger:{trigger:el,start:"top 86%",toggleActions:"play none none reverse"}}));ScrollTrigger.create({start:0,end:"max",onUpdate:self=>{$("#progressBar").style.width=(self.progress*100)+"%";const cur=currentScene();if(cur){activeSectionId=cur.id;$$(".rail button").forEach(b=>b.classList.toggle("active",b.dataset.jump===cur.id));}}});}
+  function initScroll(){const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;if(!window.gsap||!window.ScrollTrigger||reduce){document.body.classList.add("has-left-cover");return}gsap.registerPlugin(ScrollTrigger);gsap.from(".cover-title",{opacity:0,y:24,duration:1.4,ease:"power3.out"});gsap.from(".cover-author",{opacity:0,y:18,duration:1,delay:.55,ease:"power3.out"});gsap.from(".cover-credential",{opacity:0,y:16,stagger:.18,duration:.9,delay:.85,ease:"power3.out"});const tl=gsap.timeline({scrollTrigger:{trigger:"#cover",start:"top top",end:"bottom bottom",scrub:1.1,pin:".cover-stage"}});tl.to(".cover-template",{opacity:0,y:-28,duration:1.1},"+=.45").to(".question-stage",{opacity:1,duration:1.1},"-=.35");ScrollTrigger.create({trigger:"#pregunta",start:"top 85%",onEnter:()=>document.body.classList.add("has-left-cover"),onLeaveBack:()=>document.body.classList.remove("has-left-cover")});gsap.utils.toArray(".scene-title,.statement,.lede,.lens,.console-item,.timeline-step,.panel,.record-field,.legal-pillar").forEach(el=>gsap.from(el,{opacity:0,y:28,duration:.85,ease:"power2.out",scrollTrigger:{trigger:el,start:"top 86%",toggleActions:"play none none reverse"}}));ScrollTrigger.create({start:0,end:"max",onUpdate:self=>{$("#progressBar").style.width=(self.progress*100)+"%";const cur=currentScene();if(cur){activeSectionId=cur.id;$$(".rail button").forEach(b=>b.classList.toggle("active",b.dataset.jump===cur.id));}}});}
   function buildMobileUrl(){const base=CONTENT.meta.publicUrl||location.href;const u=new URL(base,location.href);u.searchParams.set("view","material");u.searchParams.set("session",SESSION);return u.toString();}
   function showQr(){if(!CONTENT.config.showQr)return;document.body.classList.remove("clean-mode");$("#qrOverlay").classList.add("show");$("#qrOverlay").setAttribute("aria-hidden","false");$("#qrTitle").textContent=CONTENT.material.lead;const url=buildMobileUrl();$("#qrUrl").textContent=url;$("#qrWarning").textContent=location.protocol==="file:"?CONTENT.ui.qrFileWarning:`${CONTENT.ui.qrSessionLabel}: ${SESSION}`;const q=$("#qrCode");q.innerHTML="";if(window.QRCode)new QRCode(q,{text:url,width:180,height:180,colorDark:"#f4f1ea",colorLight:"#080d18"});else q.textContent=url;}
   function hideQr(){$("#qrOverlay").classList.remove("show");$("#qrOverlay").setAttribute("aria-hidden","true");}
