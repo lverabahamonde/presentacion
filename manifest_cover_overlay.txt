@@ -1,0 +1,25 @@
+Cover overlay fix manifest
+
+Baseline:
+- index_v13_22_cover_text_fix.html
+
+Created:
+- index_v13_23_cover_overlay_fix.html
+- screenshot_cover_overlay.png
+
+Cover image path kept unchanged:
+- assets/cover/primera-plantilla.png
+
+Changes made:
+- Added cover-only CSS for a dark text mask and warm credential overlay.
+- Added cover-only HTML inside renderCover() above the existing PNG.
+- Corrected visible overlay credential:
+  PHD IN PHILOSOPHY (AESTHETICS AND METAPHYSICS) – STANFORD UNIVERSITY
+
+Not changed:
+- Scene order
+- Non-cover scene content
+- Color palette variables
+- JavaScript logic outside renderCover()
+- Cover image path
+- Baseline HTML file index_v13_22_cover_text_fix.html

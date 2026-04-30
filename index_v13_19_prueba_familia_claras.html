@@ -10,7 +10,6 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:wght@400;500&display=swap");
     :root{
       --bg:#03050a;--bg2:#07101d;--ink:#f4f1ea;--muted:#aaa49a;--soft:#d9d3c7;
       --line:rgba(244,241,234,.16);--line2:rgba(139,215,255,.25);
@@ -60,132 +59,6 @@
     @media (max-width:620px){.tlt-timeline{grid-template-columns:1fr}}
     @media (max-width:520px){.cover-title{font-size:clamp(2.25rem,11vw,3.1rem);line-height:.96;letter-spacing:-.045em;max-width:92vw}.cover-author{font-size:.92rem;margin-top:34px}.cover-credential{font-size:.66rem;line-height:1.35}.question-stage .quote{font-size:clamp(2.15rem,11vw,3.2rem);line-height:.95}}
     @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.cover{min-height:120vh}.cover-stage{position:relative}.question-stage{position:relative;opacity:1;min-height:60vh}.rail,.progress{display:none!important}}
-    /* v2 cinematic refactor · global visual system extracted from the minimalist title slide */
-    :root{
-      --bg:#030305;--bg2:#08090d;--ink:#f0e7d8;--muted:rgba(240,231,216,.68);--soft:rgba(240,231,216,.86);
-      --line:rgba(240,231,216,.16);--line2:rgba(212,175,55,.26);
-      --cyan:#86b9c8;--amber:#d4af37;--violet:#9d8ab7;--steel:#9a9a96;
-      --surface:rgba(10,11,14,.76);--surface2:rgba(240,231,216,.055);
-      --font-display:"Playfair Display",Georgia,"Times New Roman",serif;
-      --font-body:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      --size-hero:clamp(2.5rem,6.8vw,7.4rem);--size-title:clamp(2.2rem,5vw,5.8rem);
-      --size-lede:clamp(1.02rem,1.7vw,1.45rem);--size-small:.8rem;
-      --wrap:min(1180px,calc(100vw - 72px));--shadow:0 30px 100px rgba(0,0,0,.48);
-    }
-    html{background:var(--bg)}
-    body{
-      background:
-        linear-gradient(rgba(3,5,10,.36),rgba(3,5,10,.40)),
-        radial-gradient(circle at 50% 22%,rgba(212,175,55,.13),transparent 32%),
-        radial-gradient(circle at 22% 78%,rgba(134,185,200,.09),transparent 30%),
-        radial-gradient(circle at 78% 18%,rgba(120,74,48,.14),transparent 36%),
-        linear-gradient(135deg,#020306 0%,#090b10 48%,#030305 100%);
-      color:var(--ink);
-      font-family:var(--font-body);
-    }
-    body:before{
-      background-image:
-        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
-      background-size:52px 52px;
-      opacity:.44;
-    }
-    body:after{
-      content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-      background:
-        radial-gradient(circle at center,transparent 0 44%,rgba(0,0,0,.40) 100%),
-        linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.34));
-    }
-    .app-shell{position:relative;z-index:1}
-    .section,.closing,.act-break,.simpsons-compact,.personal-reveal,.closing-synthesis,.bibliography-final{
-      background:
-        linear-gradient(rgba(3,5,10,.34),rgba(3,5,10,.38)),
-        radial-gradient(circle at 50% 28%,rgba(212,175,55,.07),transparent 38%),
-        linear-gradient(180deg,#030305,#08090d 48%,#030305)!important;
-    }
-    .inner{width:var(--wrap)}
-    .narrow{max-width:880px}
-    .scene-title,.statement,.quote,.act-title,.interlude-title,.case-slide-title,.case-slide-final,.final-phrase,.simpsons-final,.closing-lines p,.reveal-line,.reveal-final,.tlt-final,.family-final,.monitor-bottom,.proportional-final{
-      font-family:var(--font-display);
-      font-weight:400!important;
-    }
-    .scene-title,.statement,.act-title,.interlude-title,.cover-title{
-      text-transform:none!important;
-      letter-spacing:-.045em;
-    }
-    .kicker,.act-number,.case-screen-type,.case-block h3,.monitor-card h3,.flow-stage h3,.question-box b,.tlt-step .time,.family-panel h3,.biblio-block h3,.simpsons-card h3,.pop-credit,.cover-credential{
-      text-transform:none!important;
-      letter-spacing:.08em!important;
-      font-weight:300!important;
-      color:rgba(212,175,55,.88)!important;
-    }
-    .lede,.micro,.tagline,.interlude-bridge,.monitor-bridge,.proportional-bridge,.family-bridge,.case-block li,.monitor-list li,.question-box span,.tlt-step p,.family-panel li,.biblio-block li{
-      color:rgba(240,231,216,.76)!important;
-    }
-    .ghost-btn,.lens button,button{
-      border-color:rgba(240,231,216,.18)!important;
-      background:rgba(240,231,216,.035)!important;
-      color:rgba(240,231,216,.82)!important;
-    }
-    .progress span{background:linear-gradient(90deg,var(--steel),var(--amber),var(--violet))}
-    .rail button.active{background:var(--amber);border-color:var(--amber)}
-    .pop-interlude-visual img,.simpsons-card img{
-      filter:grayscale(.18) contrast(1.05) saturate(.72) brightness(.82)!important;
-    }
-    .pop-overlay,.simpsons-card:after{
-      background:
-        linear-gradient(90deg,rgba(3,5,10,.84),rgba(3,5,10,.30)),
-        radial-gradient(circle at 60% 45%,rgba(212,175,55,.12),transparent 38%),
-        linear-gradient(180deg,rgba(3,5,10,.20),rgba(3,5,10,.88))!important;
-    }
-    .cover{min-height:100vh;background:#030305!important}
-    .cover-stage{
-      position:relative;height:100vh;display:grid;place-items:center;text-align:center;
-      padding:clamp(32px,6vw,96px);
-      background:
-        linear-gradient(rgba(3,5,10,.36),rgba(3,5,10,.40)),
-        radial-gradient(circle at 50% 30%,rgba(212,175,55,.16),transparent 34%),
-        radial-gradient(circle at 20% 78%,rgba(134,185,200,.10),transparent 30%),
-        linear-gradient(135deg,#020306 0%,#0b0d12 45%,#030305 100%)!important;
-    }
-    .cinematic-title-card{width:min(980px,100%);margin:auto;transform:translateY(-1vh)}
-    .cinematic-name{
-      margin:0;color:#ead7ae;font-family:var(--font-display);font-size:clamp(2.25rem,5.1vw,5.1rem);
-      line-height:.98;letter-spacing:.012em;font-weight:400;
-    }
-    .cinematic-credentials{
-      display:grid;gap:.5rem;margin-top:clamp(30px,4.8vh,56px);
-      color:rgba(240,231,216,.9);font-size:clamp(.9rem,1.08vw,1.08rem);
-      font-weight:300;line-height:1.55;letter-spacing:.015em;
-    }
-    .cinematic-credentials p{margin:0;font:inherit}
-    .cinematic-phrase{
-      margin:clamp(44px,7vh,76px) 0 0;color:var(--amber);font-family:var(--font-display);
-      font-size:clamp(.95rem,1.13vw,1.13rem);line-height:1.35;letter-spacing:.035em;font-weight:400;
-    }
-    .fade-sequence{opacity:0;transform:translateY(12px);animation:cinematicFade 1.15s ease forwards}
-    .fade-sequence:nth-child(1){animation-delay:.15s}.fade-sequence:nth-child(2){animation-delay:.72s}.fade-sequence:nth-child(3){animation-delay:1.32s}
-    @keyframes cinematicFade{to{opacity:1;transform:translateY(0)}}
-    .case-slide-card,.monitor-card,.flow-stage,.tlt-step,.family-panel,.legal-pillar,.record-field,.synthesis-card,.biblio-block,.simpsons-card,.cut-slab,.material-item,.status-item{
-      background:rgba(240,231,216,.045)!important;
-      border-color:rgba(240,231,216,.16)!important;
-      box-shadow:none;
-    }
-    .abstract-visual,.line-art{border-left-color:rgba(240,231,216,.14)}
-    .path-glow{filter:drop-shadow(0 0 14px rgba(212,175,55,.20))}
-    .path-glow,svg [stroke*="139,215,255"]{stroke:rgba(134,185,200,.48)!important}
-    svg [stroke*="233,196,106"]{stroke:rgba(212,175,55,.60)!important}
-    svg [stroke*="191,167,255"]{stroke:rgba(157,138,183,.42)!important}
-    svg [fill*="139,215,255"]{fill:rgba(134,185,200,.18)!important}
-    svg [fill*="233,196,106"]{fill:rgba(212,175,55,.16)!important}
-    svg [fill*="191,167,255"]{fill:rgba(157,138,183,.14)!important}
-    @media(max-width:720px){
-      :root{--wrap:min(100%,calc(100vw - 32px))}
-      .cinematic-title-card{transform:none}
-    }
-    @media(prefers-reduced-motion:reduce){
-      .fade-sequence{animation:none;opacity:1;transform:none}
-    }
   </style>
 </head>
 <body>
@@ -247,7 +120,7 @@
     ],
     meta:{publicUrl:"",audienceEndpoint:"",defaultSession:"AET-2026"},
     ui:{lifeLayer:"capa posterior al alta",monitorPhysio:"Monitor fisiológico",monitorHuman:"Monitor humano",openLens:"profundidad",techMeanings:"curativa · paliativa · desproporcionada",pressureOrderTitle:"Ordenar la presión",pressureCenter:"HAGAN TODO",pressureOrder:"vuelve la decisión al paciente concreto",recordTrace:"debe quedar trazable",qrTitle:"Material posterior",qrFileWarning:"Para QR funcional, suba este archivo a una URL pública o ejecútelo en red local.",qrSessionLabel:"Sesión",materialHeader:"AET · material posterior",materialPrivacy:"Material de apoyo. No ingrese datos personales ni clínicos reales.",materialItems:["Bibliografía breve","Plantilla de nota AET","Frases clínicas para comunicar límites","Checklist de proporcionalidad"],philosophyThreadLabel:"bisturí conceptual",conceptCutLabel:"distinción que ordena",preflightTitle:"Preflight técnico",privacyTitle:"Auditoría de privacidad"},
-    cover:{title:"No todo lo posible…",author:"Dra. Liliana Vera Bahamonde",credentials:["Médico Cirujano – Universidad Mayor – Hospital de Castro","PhD in Philosophy (Aesthetics and Metaphysics) – Stanford University"],image:"assets/cover/primera-plantilla.png",imageAlt:"Portada institucional Dra. Liliana Vera Bahamonde",question:"¿Todo lo técnicamente posible es moralmente obligatorio?",ethic:["La técnica responde qué se puede hacer.","La ética pregunta qué se debe hacer."]},
+    cover:{title:"ADECUACIÓN DEL ESFUERZO TERAPÉUTICO",author:"DRA. LILIANA VERA BAHAMONDE",credentials:["MÉDICO CIRUJANO · UNIVERSIDAD MAYOR · HOSPITAL DE CASTRO","PHD IN PHILOSOPHY · STANFORD UNIVERSITY"],image:"assets/cover/primera-plantilla.png",imageAlt:"Portada institucional Dra. Liliana Vera Bahamonde",question:"¿TODO LO TÉCNICAMENTE POSIBLE ES MORALMENTE OBLIGATORIO?",ethic:["La técnica responde qué se puede hacer.","La ética pregunta qué se debe hacer."]},
     editHelp:["Busque el bloque `const CONTENT = { ... }` al inicio del script.","Para cambiar portada edite `CONTENT.cover.title`, `author` y `credentials`.","Para ocultar una sección cambie `enabled: false` en esa escena.","Para ajustar el guion de 30 minutos edite `CONTENT.guide30.scenes`.","Para cambiar actos edite `CONTENT.acts` y el mapa `ACT_BY_SCENE` en el motor.","Para afilar o retirar filosofía edite `CONTENT.philosophers`; si un autor no cambia una decisión, muévalo a `CONTENT.references`.","Para ritmo en vivo use `X`: no borra escenas, sólo activa una señal visual para pasar rápido lo opcional.","Para desactivar QR/material posterior use `CONTENT.config.showQr = false`.","Para ocultar la escena pública de revelación use `CONTENT.config.showPersonalReveal = false`; para quitar revelaciones de notas use `CONTENT.config.showBiographicalRevealNotes = false`.","Para desactivar fotos pop use `CONTENT.config.usePopImages = false`. Para versión pública use `CONTENT.config.publicSafeMode = true`.","Las fotos pop se leen desde `assets/pop/`; use JPG/WebP comprimidos, idealmente menores de 700 KB.","Para revisar privacidad presione `V`; para preflight técnico presione `D`.","Para modo cine durante reunión presione `H`."],
     privacyTerms:["mi historia","yo","la autora","autora","mi padre","padre","mi abuela","abuela","mi familia","RUT","fecha de nacimiento","grupo sanguíneo"],
     material:{title:"Material posterior",lead:"Bibliografía · plantilla nota AET · frases clínicas · checklist",checklist:["¿Existe reversibilidad clínicamente plausible?","¿El beneficio esperado sirve a esta vida concreta?","¿La carga terapéutica sigue siendo proporcionada?","¿La voluntad del paciente es conocida o inferible?","¿La recomendación quedó escrita con claridad?"],noteTemplate:["Diagnóstico y pronóstico","Reversibilidad y beneficio esperado","Carga terapéutica","Valores conocidos o inferidos","Recomendación médica","Medidas a mantener / no iniciar / retirar","Plan activo de síntomas","Comunicación y reevaluación"],phrases:["Ya no hay tratamientos que reviertan la enfermedad, pero sí mucho que hacer para aliviar y acompañar.","Ayúdenos a entender qué habría considerado aceptable.","La intervención probablemente aumentaría carga sin ofrecer recuperación razonable."]},
@@ -589,7 +462,7 @@
   function popCultureById(id){return CONTENT.popCultureInterludes.find(p=>p.id===id);}
   function sceneExtras(s){const cut=s.conceptCut?`<div class="concept-cut"><b>${esc(CONTENT.ui.conceptCutLabel)}</b>${esc(s.conceptCut[0])} <span>≠</span> ${esc(s.conceptCut[1])}<p class="micro">${esc(s.conceptCut[2])}</p></div>`:"";const p=philosophyById(s.philosophyLens);const lens=p?`<div class="philosophy-thread"><b>${esc(CONTENT.ui.philosophyThreadLabel)} · ${esc(p.name)}</b><p>${esc(p.phrase)}</p><p class="micro">${esc(p.question)}</p></div>`:"";return cut+lens;}
   function renderActBreak(act){return `<section class="act-break scene" id="${esc(act.id)}" data-nav="${esc(act.number+' · '+act.title)}"><div class="inner narrow"><p class="act-number">${esc(act.number)}</p><h2 class="act-title">${esc(act.title)}</h2><p class="act-line">${esc(act.line)}</p></div></section>`;}
-  function renderCover(){const c=CONTENT.cover;return `<section class="cover" id="cover" data-nav="Portada"${notesAttr(CONTENT.guide30.scenes.cover)}><div class="cover-stage"><div class="cinematic-title-card"><h1 class="cinematic-name fade-sequence">${esc(c.author)}</h1><div class="cinematic-credentials fade-sequence">${c.credentials.map(x=>`<p>${esc(x)}</p>`).join("")}</div><p class="cinematic-phrase fade-sequence">${esc(c.title)}</p></div></div></section>`;}
+  function renderCover(){const c=CONTENT.cover;const title=esc(c.title).replace(" DEL ESFUERZO ","<br>DEL ESFUERZO<br>");return `<section class="cover" id="cover" data-nav="Portada"${notesAttr(CONTENT.guide30.scenes.cover)}><div class="cover-stage"><div class="cover-template"><img src="${esc(c.image)}" alt="${esc(c.imageAlt)}" onerror="this.parentElement.classList.add('image-missing')"><div class="cover-fallback"><h1 class="cover-title">${title}</h1><div class="cover-mark"></div><p class="cover-author">${esc(c.author)}</p>${c.credentials.map(x=>`<p class="cover-credential">${esc(x)}</p>`).join("")}</div></div><div class="question-stage"><div><div class="cover-mark"></div><p class="quote">${esc(c.question)}</p><p class="ethic-line">${c.ethic.map(esc).join("<br>")}</p></div></div></div></section>`;}
   function renderScrollyStatement(s){return sectionOpen(s,"pause")+`<div class="narrow center"><p class="kicker">${esc(s.eyebrow)}</p><h2 class="statement">${esc(s.title)}</h2><p class="lede">${esc(s.lead)}</p>${sceneExtras(s)}</div></div></section>`;}
   function renderInterlude(s){
     const pop=s.popKey?popCultureById(s.popKey):null;
