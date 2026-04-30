@@ -1,0 +1,30 @@
+Entrega: actualizacion de portada visible
+
+PNG reemplazado:
+assets/cover/primera-plantilla.png
+
+Texto visible actualizado dentro del PNG:
+PHD IN PHILOSOPHY (AESTHETICS AND METAPHYSICS) – STANFORD UNIVERSITY
+
+Dimensiones del PNG:
+1672 x 941 px
+
+Modo:
+RGB, PNG no entrelazado
+
+Tamano del archivo antes, si disponible:
+Archivo fuente original disponible en /Users/lili/Desktop/PRIMERA PLANTILLA.png: 2,411,348 bytes
+Archivo reemplazado final en assets/cover/primera-plantilla.png: 2,311,928 bytes
+
+SHA-256 del PNG actualizado:
+f66bcc301de0a8880e510461b9bce055dc0fcc55b74dde309288f895a94bb7a7
+
+Confirmacion:
+index_v13_22_cover_text_fix.html NO fue modificado.
+SHA-256 HTML verificado:
+62c9a0364cbb7a8538df9fa9b25b4faf3cca76c6aae1f456a874be5d9216b674
+
+Contenido del ZIP:
+1. assets/cover/primera-plantilla.png
+2. screenshot_cover.png
+3. manifest.txt
